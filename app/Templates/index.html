@@ -1,9 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="jumbotron">
-		<h1>Welcome to Darin's Movie DB!</h1>
-		<p>Current features include a complete movie list, most recent 10 additions to the collection, and detailed movie information complete with IMDb and TMDb links.</p>
+	<style>
+	.bg {
+		background: url("https://image.tmdb.org/t/p/original{{ background[0] }}");
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		position: absolute;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-color:#333;
+		opacity: 0.7;
+		z-index: -1;
+        margin-left: -10px;
+        margin-right: -10px;
+        height: 100%;
+        width: 100%;
+	}
+	.bg * {
+		visibility: hidden;
+	}
+	div * {
+		z-index: 0;
+	}
+    #jumbo {
+        background: rgba(255, 255, 255, 0.0);
+    }
+    #title {
+        text-align: center;
+        vertical-align: bottom;
+        font-size: 50px;
+    }
+    </style>
+    <a href="/movie/{{ background[2] }}" title="{{ background[1] }}" class="bg"></a>
+	<div class="jumbotron" id="jumbo">
+		<h1><strong>Welcome to Darin's Movie DB!</strong></h1>
+		<p><strong>Choose an option from the menu bar or click the background image to get started!</strong></p>
 		<p><a class="btn btn-primary btn-lg" href="/list/" role="button">Get Started!</a></p>
 	</div>
 {% endblock %}
