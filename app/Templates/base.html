@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="/css/styles.css" rel="stylesheet">
+		{% if title %}
+			<title>{{ title }} - My Movie DB</title>
+			{% else %}
+			<title>Welcome to My Movie DB</title>
+		{% endif %}
+	</head>
+	<body style="margin-left: 10px; margin-right: 10px; padding-top: 70px">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/index/">Movie DB</a>
+					<ul class="nav navbar-nav">
+				</div>
+				
+				<!-- Collect the nav links, forms and other content for toggling -->
+				<div class="collapse navbar-collapse" id="home">
+					<ul class="nav navbar-nav">
+						<li><a href={{ url_for('index') }}>Home</a></li>
+						<li><a href={{ url_for('list') }}>Movie List</a></li>
+						<li><a href={{ url_for('recent') }}>Recent Additions</a></li>
+						<li><a href={{ url_for('movie_3d') }}>3D</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{% block content %}{% endblock %}
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script>
+			var url = window.location;
+			// Will only work if string in href matches with location
+			// $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+			// Will also work for relative and absolute hrefs
+			$('ul.nav a').filter(function() {
+				return this.href == url;
+			}).parent().addClass('active');
+		</script>
+	</body>
+</html>

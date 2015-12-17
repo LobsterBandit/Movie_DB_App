@@ -1,0 +1,20 @@
+img {
+    float: left;
+    height: auto;
+	max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.myimgclass {
+	margin: 2% 2% 2% 2%;
+}
+
+.row-center {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+}
+
+

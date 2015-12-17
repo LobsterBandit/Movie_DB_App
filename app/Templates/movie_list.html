@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-fluid row-center">
+				{% for movie in movies %}
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+						<h3><a href="/movie/{{ movie[8] }}" >{{ movie[4][:35] }}</a></h3>
+						<div><u>Path</u>: {{ movie[3][:45] }}</div>
+						<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
+						<div><u>Rating</u>: {{ movie[9] }}</div>
+						<div><u>Summary</u>: {{ movie[7][:45] }}...</div>
+						<div>
+						<a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
+							Detail
+						</a>
+						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+							<span class="glyphicon glyphicon-film"></span>
+							IMDb
+						</a>
+						<a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+							<span class="glyphicon glyphicon-film"></span>
+							TMDb
+						</a>
+			<!-- 			<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">
+							<span class="glyphicon glyphicon-play-circle"></span>
+							Trailer
+						</a> -->
+						</div>
+					</div>
+				{% endfor %}
+		</div>
+	</div>
+{% endblock %}

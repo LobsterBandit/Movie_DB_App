@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<style>
+	.bg {
+		background: url("https://image.tmdb.org/t/p/original/{{ movie[13] }}");
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		position: absolute;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		<!-- background-color: rgba(#333, .3); -->
+		background-color:#333;
+		opacity: 0.3;
+		z-index: -1;
+	}
+	.bg * {
+		visibility: hidden;
+	}
+	div * {
+		z-index: 0;
+<!-- 		font-weight: bold; -->
+	}
+	</style>
+	<div class="bg">
+	<div class="container-fluid">
+		<div class="row-fluid row-center">
+				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+						<img src="https://image.tmdb.org/t/p/original/{{ movie[12] }}" class="image-responsive myimgclass">
+				</div>
+				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
+						<h2>{{ movie[4] }}</h2>
+						<div><h4><i> {{ movie[14] }}</i></h4></div>
+						<div><u>Path</u>: {{ movie[3] }}</div>
+						<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
+						<div><u>Rating</u>: {{ movie[9] }}</div>
+						<div><u>Summary</u>: {{ movie[7] }}</div><br>
+						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+							<span class="glyphicon glyphicon-film"></span>
+							IMDb
+						</a>
+						<a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+							<span class="glyphicon glyphicon-film"></span>
+							TMDb
+						</a>
+<!-- 						<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">
+							<span class="glyphicon glyphicon-play-circle"></span>
+							Trailer
+						</a> -->
+				</div>
+		</div>
+	</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid row-center">
+				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+						<img src="https://image.tmdb.org/t/p/original/{{ movie[12] }}" class="image-responsive myimgclass">
+				</div>
+				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
+						<h2>{{ movie[4] }}</h2>
+						<div><h4><i> {{ movie[14] }}</i></h4></div>
+						<div><u>Path</u>: {{ movie[3] }}</div>
+						<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
+						<div><u>Rating</u>: {{ movie[9] }}</div>
+						<div><u>Summary</u>: {{ movie[7] }}</div><br>
+						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+							<span class="glyphicon glyphicon-film"></span>
+							IMDb
+						</a>
+						<a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+							<span class="glyphicon glyphicon-film"></span>
+							TMDb
+						</a>
+<!-- 						<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">
+							<span class="glyphicon glyphicon-play-circle"></span>
+							Trailer
+						</a> -->
+				</div>
+		</div>
+	</div>
+{% endblock %}
