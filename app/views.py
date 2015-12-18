@@ -8,13 +8,12 @@ from .database import *
 @app.route('/index/')
 def index():
     query = 'select max(id) from Movie_List'
-    max = query_db(query, one=True)
-    randid = tuple(str(randint(1, max[0])) for x in range(3))
+    maxid = query_db(query, one=True)
+    randid = tuple(str(randint(1, maxid[0])) for x in range(3))
     query = '''select backdrop, title, imdb_id
                from Movie_List
                where id in {0} and backdrop is not null limit 1'''.format(randid)
     background = query_db(query, one=True)
-    print(background)
     return render_template('index.html',
                            background=background,
                            title='Home')
