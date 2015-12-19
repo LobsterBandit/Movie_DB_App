@@ -10,6 +10,10 @@ img {
 	margin: 2% 2% 2% 2%;
 }
 
+.posterwallbg {
+    background-color: #224885;
+}
+
 .row-center {
 	height: 100%;
 	display: table-cell;
@@ -17,4 +21,12 @@ img {
 	width: 100%;
 }
 
+.offsetnav {
+    padding-top: 30px;
+}
 
+/*.navbar-nav > li > a, .navbar-brand {
+    padding-top:5px !important; padding-bottom:0 !important;
+    height: 30px;
+}
+.navbar {min-height:30px !important;}*/

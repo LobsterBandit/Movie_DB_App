@@ -1,40 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="container-fluid">
-		<div class="row-fluid row-center">
-			{% for movie in movies %}
-				<div class="col-xs-1">
-					{{ loop.index }}						<!--result number-->
-				</div>
-				<div class="col-xs-10 col-md-3">
-					<strong><a href="/movie/{{ movie[8] }}" >{{ movie[4] }}</a></strong>			<!--title-->
-				</div>
-				<div class="col-xs-1">
-					{{ movie[5] }}							<!--year-->
-				</div>
-				<div class="col-xs-12 col-md-3" align=left>
-					<div>
-						{{ movie[3][:50] }}						<!--path-->
-					</div>
-				</div>
-				<div class="col-xs-4 col-md-1">
-					{{ movie[2]|filesizeformat() }}	<!--size-->
-				</div>
-				<div class="col-xs-3 col-md-1">
-					{{ movie[9] }}							<!--rating-->
-				</div>
-				<div class="col-xs-4 col-md-2">
-					<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
-						<span class="glyphicon glyphicon-film"></span>
-						IMDb
-					</a>
-					<a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
-						<span class="glyphicon glyphicon-film"></span>
-						TMDb
-					</a>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
+    <div class="container-fluid offsetnav posterwallbg">
+        <div class="row-fluid">
+            {% for movie in movies %}
+                <div class="col-xs-3 col-md-2 col-lg-2">
+                    <a href="/movie/{{ movie[8] }}" title="{{ movie[4] }}">
+                        <img src="https://image.tmdb.org/t/p/w185/{{ movie[12] }}" class="image-responsive myimgclass">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
