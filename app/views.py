@@ -47,6 +47,15 @@ def movie_3d():
                            movies=movies)
 
 
+@app.route('/top-rated/')
+def top_rated():
+    query = 'select * from Movie_List order by Rating limit 12'
+    movies = query_db(query)
+    return render_template('top_rated.html',
+                           title='Top Rated',
+                           movies=movies)
+
+
 @app.route('/movie/<imdb_id>')
 def movie_page(imdb_id):
     query = 'select * from Movie_List where imdb_id = ?'
