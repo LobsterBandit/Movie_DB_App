@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container-fluid offsetnav">
+		<div class="row-fluid row-center">
+			{% for movie in movies %}
+				<div class="col-xs-3 col-sm-2 col-md-2 col-lg-1">
+                    <a href="/movie/{{ movie[8] }}" title="{{ movie[4] }}">
+                        <img src="https://image.tmdb.org/t/p/w500/{{ movie[12] }}" class="image-responsive myimgclass">
+                    </a>
+				</div>
+				<div class="col-xs-9 col-sm-10 col-md-4 col-lg-3">
+                    <h2><a href="/movie/{{ movie[8] }}" >{{ movie[4] }}</a></h2>
+                    <div><u>Path</u>: {{ movie[3] }}</div>
+                    <div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
+                    <div><u>Rating</u>: {{ movie[9] }}</div>
+                    <div><u>Summary</u>: {{ movie[7][:100] }}<a href="/movie/{{ movie[8] }}" >...read more</a></div><br>
+                    <a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
+                        Detail
+                    </a>
+                    <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+                        <span class="glyphicon glyphicon-film"></span>
+                        IMDb
+                    </a>
+                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+                        <span class="glyphicon glyphicon-film"></span>
+                        TMDb
+                    </a>
+                    <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
+                        <!--<span class="glyphicon glyphicon-play-circle"></span>-->
+                        <!--Trailer-->
+                    <!--</a>-->
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
