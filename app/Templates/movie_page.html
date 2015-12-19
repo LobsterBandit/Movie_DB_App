@@ -8,11 +8,11 @@
 		background-position: center center;
 		background-attachment: fixed;
 		position: absolute;
-		 -webkit-background-size: cover;
-		 -moz-background-size: cover;
-		 -o-background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
 		background-size: cover;
-		<!-- background-color: rgba(#333, .3); -->
+		background-color: rgba(#333, .3);
 		background-color:#333;
 		opacity: 0.4;
 		z-index: -1;
@@ -35,11 +35,11 @@
 	<div class="container-fluid offsetnav">
 		<div class="row-fluid row-center">
 				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-						<img src="https://image.tmdb.org/t/p/w500/{{ movie[12] }}" class="image-responsive myimgclass">
+						<img src="https://image.tmdb.org/t/p/w500/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
-						<h2>{{ movie[4] }}</h2>
-						<div><h4><i> {{ movie[14] }}</i></h4></div>
+						<h1>{{ movie[4] }}</h1>
+						<div><h4><i> {{ movie[14] }}</i></h4></div><br>
 						<div><u>Path</u>: {{ movie[3] }}</div>
 						<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
 						<div><u>Rating</u>: {{ movie[9] }}</div>

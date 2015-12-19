@@ -25,6 +25,10 @@ img {
     padding-top: 70px;
 }
 
+.titlebg {
+    background-color: rgba(188, 232, 241, 0.7);
+}
+
 /*.navbar-nav > li > a, .navbar-brand {
     padding-top:5px !important; padding-bottom:0 !important;
     height: 30px;

@@ -49,7 +49,7 @@ def movie_3d():
 
 @app.route('/top-rated/')
 def top_rated():
-    query = 'select * from Movie_List order by Rating limit 12'
+    query = 'select * from Movie_List order by Rating desc limit 12'
     movies = query_db(query)
     return render_template('top_rated.html',
                            title='Top Rated',
