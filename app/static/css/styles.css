@@ -18,7 +18,7 @@ img {
 	height: 100%;
 	display: table-cell;
 	vertical-align: middle;
-	width: 100%;
+/*	width: 100%;*/
 }
 
 .offsetnav {
@@ -27,6 +27,22 @@ img {
 
 .titlebg {
     background-color: rgba(188, 232, 241, 0.7);
+}
+
+#bottombuttons {
+    position: absolute;
+    bottom: 0;
+}
+
+#toptitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#toptitle:hover {
+    text-overflow: inherit;
+    overflow: visible;
 }
 
 /*.navbar-nav > li > a, .navbar-brand {

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="container-fluid offsetnav">
-		<div class="row">
+	<!--<div class="container-fluid offsetnav">-->
+		<div class="row-fluid offsetnav">
 			{% for movie in movies %}
                 <div class="col-md-6 col-lg-4 hidden-xs hidden-sm">
-                    <h2 class="titlebg" align="center"><a href="/movie/{{ movie[8] }}">{{ movie[4] }}</a></h2>
+                    <h2 class="titlebg" id="toptitle" align="center"><a href="/movie/{{ movie[8] }}">{{ movie[4] }}</a></h2>
                     <div class="row">
                         <div class="col-md-4 col-lg-4">
                             <a href="/movie/{{ movie[8] }}" title="{{ movie[4] }}">
@@ -13,24 +13,28 @@
                             </a>
                         </div>
                         <div class="col-md-8 col-lg-8">
-                            <div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
-                            <div><u>Rating</u>: {{ movie[9] }}</div>
-                            <div><u>Summary</u>: {{ movie[7][:350] }}<a href="/movie/{{ movie[8] }}" >...read more</a></div><br>
-                            <a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
-                                Detail
-                            </a>
-                            <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
-                                <span class="glyphicon glyphicon-film"></span>
-                                IMDb
-                            </a>
-                            <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
-                                <span class="glyphicon glyphicon-film"></span>
-                                TMDb
-                            </a>
-                            <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
-                                <!--<span class="glyphicon glyphicon-play-circle"></span>-->
-                                <!--Trailer-->
-                            <!--</a>-->
+                            <div><strong>Rating</strong> {{ movie[9] }}</div>
+                            <dl>
+                                <dt>Summary</dt>
+                                <dd>{{ movie[7][:200] }}<a href="/movie/{{ movie[8] }}" >...read more</a></dd>
+                            </dl>
+                            <div>
+                                <a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
+                                    Detail
+                                </a>
+                                <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+                                    <span class="glyphicon glyphicon-film"></span>
+                                    IMDb
+                                </a>
+                                <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+                                    <span class="glyphicon glyphicon-film"></span>
+                                    TMDb
+                                </a>
+                                <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
+                                    <!--<span class="glyphicon glyphicon-play-circle"></span>-->
+                                    <!--Trailer-->
+                                <!--</a>-->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,23 +52,25 @@
                     <div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
                     <div><u>Rating</u>: {{ movie[9] }}</div>
                     <div><u>Summary</u>: {{ movie[7][:150] }}<a href="/movie/{{ movie[8] }}" >...read more</a></div><br>
-                    <a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
-                        Detail
-                    </a>
-                    <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
-                        <span class="glyphicon glyphicon-film"></span>
-                        IMDb
-                    </a>
-                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
-                        <span class="glyphicon glyphicon-film"></span>
-                        TMDb
-                    </a>
-                    <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
-                        <!--<span class="glyphicon glyphicon-play-circle"></span>-->
-                        <!--Trailer-->
-                    <!--</a>-->
+                    <div>
+                        <a class="btn btn-default" href="/movie/{{ movie[8] }}" role="button">
+                            Detail
+                        </a>
+                        <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+                            <span class="glyphicon glyphicon-film"></span>
+                            IMDb
+                        </a>
+                        <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+                            <span class="glyphicon glyphicon-film"></span>
+                            TMDb
+                        </a>
+                        <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
+                            <!--<span class="glyphicon glyphicon-play-circle"></span>-->
+                            <!--Trailer-->
+                        <!--</a>-->
+                    </div>
 				</div>
 			{% endfor %}
 		</div>
-	</div>
+	<!--</div>-->
 {% endblock %}

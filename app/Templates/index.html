@@ -27,6 +27,7 @@
 		z-index: 0;
 	}
     #jumbo {
+		margin-left: 10px;
         background: rgba(255, 255, 255, 0.0);
     }
     #title {
@@ -36,9 +37,8 @@
     }
     </style>
     <a href="/movie/{{ background[2] }}" title="{{ background[1] }}" class="bg"></a>
-	<div class="jumbotron offsetnav" id="jumbo">
-		<h1><strong>Welcome to Darin's Movie DB!</strong></h1>
-		<p><strong>Choose an option from the menu bar or click the background image to get started!</strong></p>
+	<div class="offsetnav" id="jumbo">
+		<h1 style="font-size: 70px;"><strong>Welcome to Darin's Movie DB!</strong></h1>
 		<p><a class="btn btn-primary btn-lg" href="/list/" role="button">Get Started!</a></p>
 	</div>
 {% endblock %}
