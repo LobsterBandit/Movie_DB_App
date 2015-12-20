@@ -1,7 +1,8 @@
 from random import randint
-from flask import Flask, render_template, g
-from app import app
+from flask import Flask, render_template, g, redirect
+from app import app, db, models
 from .database import *
+from config import PER_PAGE
 
 
 @app.route('/')
@@ -28,10 +29,22 @@ def list():
                            movies=movies)
 
 
+@app.route('/movies', defaults={'page': 1})
+@app.route('/movies/page/<int:page>')
+def paged_list(page):
+    query = 'select count(*) from Movie_List'
+    total = query_db(query)
+    startat = page * PER_PAGE
+    query = 'select * from Movie_List order by Title limit ?, ?'
+    movies = query_db(query, args=(startat, PER_PAGE))
+    return render_template('paged_list.html',
+                           title='Movie List',
+                           movies=movies)
+
+
 @app.route('/recent/')
 def recent():
     query = 'select * from Movie_List order by ID desc limit 12'
-    # args = '10'
     movies = query_db(query)
     return render_template('recent_adds.html',
                            title='Recent Adds',
@@ -49,8 +62,12 @@ def movie_3d():
 
 @app.route('/top-rated/')
 def top_rated():
-    query = 'select * from Movie_List order by Rating desc limit 24'
-    movies = query_db(query)
+    # sqlite sql text
+    # query = 'select * from Movie_List order by Rating desc limit 24'
+    # movies = query_db(query)
+
+    # sqlalchemy version
+    movies = models.MovieList.query.order_by(models.MovieList.Rating.desc()).all()[:24]
     return render_template('top_rated.html',
                            title='Top Rated',
                            movies=movies)
