@@ -29,14 +29,19 @@ def list():
                            movies=movies)
 
 
-@app.route('/movies', defaults={'page': 1})
-@app.route('/movies/page/<int:page>')
+@app.route('/movies/', defaults={'page': 1})
+@app.route('/movies/<int:page>')
 def paged_list(page):
-    query = 'select count(*) from Movie_List'
-    total = query_db(query)
-    startat = page * PER_PAGE
-    query = 'select * from Movie_List order by Title limit ?, ?'
-    movies = query_db(query, args=(startat, PER_PAGE))
+    # query = 'select count(*) from Movie_List'
+    # total = query_db(query)
+    # startat = page * PER_PAGE
+    # query = 'select * from Movie_List order by Title limit ?, ?'
+    # movies = query_db(query, args=(startat, PER_PAGE))
+
+    # SQLAlchemy version
+    movies = models.MovieList.query.order_by(models.MovieList.Title).paginate(page, PER_PAGE, True)
+    total = movies.total
+    # print(total)
     return render_template('paged_list.html',
                            title='Movie List',
                            movies=movies)
