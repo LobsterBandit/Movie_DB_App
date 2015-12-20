@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row-fluid offsetnav">
+        {% for movie in movies %}
+            <div class="col-md-6 col-lg-4 hidden-xs hidden-sm">
+                <h2 class="titlebg" id="toptitle" align="center"><a href="/movie/{{ movie.imdb_id }}">{{ movie.Title }}</a></h2>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 hidden-xs hidden-sm">
+                        <a href="/movie/{{ movie.imdb_id }}" title="{{ movie.Title }}">
+                            <img src="https://image.tmdb.org/t/p/w500/{{ movie.Poster }}" class="image-responsive img-rounded myimgclass">
+                        </a>
+                    </div>
+                    <div class="col-md-8 col-lg-8 hidden-xs hidden-sm">
+                        <div><strong>Rating</strong> {{ movie.Rating }}</div>
+                        <dl>
+                            <dt>Summary</dt>
+                            <dd>{{ movie.Overview[:200] }}<a href="/movie/{{ movie.imdb_id }}" >...read more</a></dd>
+                        </dl>
+                        <div>
+                            <a class="btn btn-default" href="/movie/{{ movie.imdb_id }}" role="button">
+                                Detail
+                            </a>
+                            <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie.imdb_id }}" role="button">
+                                <span class="glyphicon glyphicon-film"></span>
+                                IMDb
+                            </a>
+                            <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie.tmdb_id }}">
+                                <span class="glyphicon glyphicon-film"></span>
+                                TMDb
+                            </a>
+                            <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
+                                <!--<span class="glyphicon glyphicon-play-circle"></span>-->
+                                <!--Trailer-->
+                            <!--</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- different grid design for smaller screens -->
+            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+                <h3 class="titlebg" align="center"><a href="/movie/{{ movie.imdb_id }}">{{ movie.Title }}</a></h3>
+            </div>
+            <div class="col-xs-3 col-sm-2 hidden-md hidden-lg">
+                <a href="/movie/{{ movie.imdb_id }}" title="{{ movie[4] }}">
+                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.Poster }}" class="image-responsive img-rounded myimgclass">
+                </a>
+            </div>
+            <div class="col-xs-9 col-sm-10 hidden-md hidden-lg">
+                <div><u>Size</u>: {{ movie.Size|filesizeformat() }}</div>
+                <div><u>Rating</u>: {{ movie.Rating }}</div>
+                <div><u>Summary</u>: {{ movie.Overview[:150] }}<a href="/movie/{{ movie.imdb_id }}" >...read more</a></div><br>
+                <div>
+                    <a class="btn btn-default" href="/movie/{{ movie.imdb_id }}" role="button">
+                        Detail
+                    </a>
+                    <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie.imdb_id }}" role="button">
+                        <span class="glyphicon glyphicon-film"></span>
+                        IMDb
+                    </a>
+                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie.tmdb_id }}">
+                        <span class="glyphicon glyphicon-film"></span>
+                        TMDb
+                    </a>
+                    <!--<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">-->
+                        <!--<span class="glyphicon glyphicon-play-circle"></span>-->
+                        <!--Trailer-->
+                    <!--</a>-->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
