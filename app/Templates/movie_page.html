@@ -16,34 +16,36 @@
 		background-color:#333;
 		opacity: 0.4;
 		z-index: -1;
-        padding-top: -140px;
-        margin-left: -10px;
+        <!--padding-top: -140px;-->
+        <!--margin-left: -10px;-->
         margin-right: -10px;
 		height: 100%;
         width: 100%;
 	}
-	.bg * {
-		visibility: hidden;
-	}
-	div * {
-		z-index: 0;
-<!-- 		font-weight: bold; -->
-	}
 	</style>
 	<div class="bg">
 	</div>
-	<div class="container-fluid offsetnav">
-		<div class="row-fluid row-center">
+		<div class="row-fluid offsetnav">
 				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-						<img src="https://image.tmdb.org/t/p/w500/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">
+						<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
 						<h1>{{ movie[4] }}</h1>
 						<div><h4><i> {{ movie[14] }}</i></h4></div><br>
-						<div><u>Path</u>: {{ movie[3] }}</div>
-						<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>
-						<div><u>Rating</u>: {{ movie[9] }}</div>
-						<div><u>Summary</u>: {{ movie[7] }}</div><br>
+                        <dl>
+                            <dt>Path</dt>
+                            <dd>{{ movie[3] }}</dd><br>
+                            <dt>Size</dt>
+                            <dd>{{ movie[2]|filesizeformat() }}</dd><br>
+                            <dt>Rating</dt>
+                            <dd>{{ movie[9] }}</dd><br>
+                            <dt>Summary</dt>
+                            <dd>{{ movie[7] }}</dd>
+                        </dl>
+						<!--<div><u>Path</u>: {{ movie[3] }}</div>-->
+						<!--<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>-->
+						<!--<div><u>Rating</u>: {{ movie[9] }}</div>-->
+						<!--<div><u>Summary</u>: {{ movie[7] }}</div><br>-->
 						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
 							<span class="glyphicon glyphicon-film"></span>
 							IMDb
@@ -58,5 +60,4 @@
 						</a> -->
 				<!--</div>-->
 		</div>
-	</div>
 {% endblock %}

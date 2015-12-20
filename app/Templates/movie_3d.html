@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <div class="posterwallbg">
-    <!--<div class="container-fluid offsetnav posterwallbg">-->
-        <div class="row-fluid offsetnav">
+    <div class="posterwallbg">
+        <div class="row-fluid no-gutter offsetnav">
             {% for movie in movies %}
-                <div class="col-xs-3 col-md-2 col-lg-1">
+                <div class="col-xs-3 col-md-2 col-lg-2">
                     <a href="/movie/{{ movie[8] }}" title="{{ movie[4] }}">
-                        <img src="https://image.tmdb.org/t/p/w185/{{ movie[12] }}" class="image-responsive myimgclass">
+                        <img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive myimgclass">
                     </a>
                 </div>
             {% endfor %}
