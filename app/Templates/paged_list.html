@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row-fluid offsetnav">
-        {% for movie in movies %}
+        {% for movie in movies.items %}
             <div class="col-md-6 col-lg-4 hidden-xs hidden-sm">
                 <h2 class="titlebg" id="toptitle" align="center"><a href="/movie/{{ movie.imdb_id }}">{{ movie.Title }}</a></h2>
                 <div class="row">
@@ -70,5 +70,21 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="text-center">
+    <nav>
+        <ul class="pagination">
+            {% if movies.has_prev %}
+                <li><a href="{{ url_for('paged_list', page=movies.prev_num) }}">&laquo; Previous</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&laquo; Previous</a></li>
+            {% endif %}
+            {% if movies.has_next %}
+                <li><a href="{{ url_for('paged_list', page=movies.next_num) }}">Next &raquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">Next &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     </div>
 {% endblock %}
