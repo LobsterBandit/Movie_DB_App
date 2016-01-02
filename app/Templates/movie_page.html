@@ -37,18 +37,14 @@
 						<div><h4><i> {{ movie[14] }}</i></h4></div><br>
                         <dl>
                             <dt>Path</dt>
-                            <dd>{{ movie[3] }}</dd><br>
+                            <dd>{{ movie[3] }}</dd>
                             <dt>Size</dt>
-                            <dd>{{ movie[2]|filesizeformat() }}</dd><br>
+                            <dd>{{ movie[2]|filesizeformat() }}</dd>
                             <dt>Rating</dt>
-                            <dd>{{ movie[9] }}</dd><br>
+                            <dd>{{ movie[9] }}</dd>
                             <dt>Summary</dt>
                             <dd>{{ movie[7] }}</dd>
                         </dl>
-						<!--<div><u>Path</u>: {{ movie[3] }}</div>-->
-						<!--<div><u>Size</u>: {{ movie[2]|filesizeformat() }}</div>-->
-						<!--<div><u>Rating</u>: {{ movie[9] }}</div>-->
-						<!--<div><u>Summary</u>: {{ movie[7] }}</div><br>-->
 						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
 							<span class="glyphicon glyphicon-film"></span>
 							IMDb
@@ -57,10 +53,5 @@
 							<span class="glyphicon glyphicon-film"></span>
 							TMDb
 						</a>
-<!-- 						<a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[10] }}" role="button">
-							<span class="glyphicon glyphicon-play-circle"></span>
-							Trailer
-						</a> -->
-				<!--</div>-->
 		</div>
 {% endblock %}

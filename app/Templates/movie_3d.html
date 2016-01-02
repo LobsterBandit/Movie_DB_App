@@ -6,7 +6,8 @@
             {% for movie in movies %}
                 <div class="col-xs-3 col-md-2 col-lg-2">
                     <a href="/movie/{{ movie[8] }}" title="{{ movie[4] }}">
-                        <img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive myimgclass">
+                        <img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_poster.jpg') }}" class="image-responsive">
+                        <!--<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive myimgclass">-->
                     </a>
                 </div>
             {% endfor %}
