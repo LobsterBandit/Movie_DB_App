@@ -9,5 +9,4 @@ DATABASE = os.path.join(basedir, 'Movie_DB.db')
 SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(os.path.join(basedir, 'Movie_DB.db'))
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
 PER_PAGE = 21
