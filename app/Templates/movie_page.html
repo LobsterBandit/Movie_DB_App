@@ -3,7 +3,8 @@
 {% block content %}
 	<style>
 	.bg {
-		background: url("https://image.tmdb.org/t/p/original{{ movie[13] }}");
+		<!--background: url("https://image.tmdb.org/t/p/original{{ movie[13] }}");-->
+        <!--background: url('static/images/'~movie[4]~'_'~movie[5]~'_backdrop.jpg');-->
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-attachment: fixed;
@@ -19,15 +20,17 @@
         <!--padding-top: -140px;-->
         <!--margin-left: -10px;-->
         margin-right: -10px;
-		height: 100%;
+		height: auto;
         width: 100%;
 	}
 	</style>
 	<div class="bg">
+        <img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_backdrop.jpg') }}">
 	</div>
 		<div class="row-fluid offsetnav">
 				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-						<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">
+					<img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_poster.jpg') }}" class="image-responseive img-rounded myimgclass">
+					<!--<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">-->
 				</div>
 				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
 						<h1>{{ movie[4] }}</h1>
