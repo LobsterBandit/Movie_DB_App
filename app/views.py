@@ -92,10 +92,6 @@ def movie_page(imdb_id):
 def search():
     form = SearchForm()
     if form.validate_on_submit():
-    # if request.method == 'POST':
-        # flash('Search request for {}'.format(form.search.data))
-        # query = "select * from Movie_List where title like '%?%'"
-        # result = query_db(query, (form.search.data,))
         result = models.MovieList.query.filter(models.MovieList.Title.like('%' + form.search.data + '%')).order_by(models.MovieList.Title).all()
         return render_template('top_rated.html',
                                title='Search',
