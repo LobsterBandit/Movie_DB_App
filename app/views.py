@@ -1,13 +1,15 @@
 from random import randint
-from flask import Flask, render_template, g, redirect
+from flask import Flask, render_template, g, redirect, request, url_for, flash
 from app import app, db, models
 from .database import *
+from .forms import SearchForm
 from config import PER_PAGE
 
 
 @app.route('/')
 @app.route('/index/')
 def index():
+    form = SearchForm()
     query = 'select max(id) from Movie_List'
     maxid = query_db(query, one=True)
     randid = tuple(str(randint(1, maxid[0])) for x in range(3))
@@ -17,62 +19,86 @@ def index():
     background = query_db(query, one=True)
     return render_template('index.html',
                            background=background,
-                           title='Home')
+                           title='Home',
+                           form=form)
 
 
 @app.route('/list/')
 def list():
+    form = SearchForm()
     query = 'select * from Movie_List order by Title'
     movies = query_db(query)
     return render_template('movie_list.html',
                            title='Movie List',
-                           movies=movies)
+                           movies=movies,
+                           form=form)
 
 
 @app.route('/movies/', defaults={'page': 1})
 @app.route('/movies/<int:page>')
 def paged_list(page):
+    form = SearchForm()
     movies = models.MovieList.query.order_by(models.MovieList.Title).paginate(page, PER_PAGE, True)
     return render_template('paged_list.html',
                            title='Movie List',
-                           movies=movies)
+                           movies=movies,
+                           form=form)
 
 
 @app.route('/recent/')
 def recent():
+    form = SearchForm()
     query = 'select * from Movie_List order by ID desc limit 12'
     movies = query_db(query)
     return render_template('recent_adds.html',
                            title='Recent Adds',
-                           movies=movies)
+                           movies=movies,
+                           form=form)
 
 
 @app.route('/3d/')
 def movie_3d():
+    form = SearchForm()
     query = 'select * from Movie_List where filename like "%3D%" order by Title'
     movies = query_db(query)
     return render_template('movie_3d.html',
                            title='3D',
-                           movies=movies)
+                           movies=movies,
+                           form=form)
 
 
 @app.route('/top-rated/')
 def top_rated():
-    # sqlite sql text
-    # query = 'select * from Movie_List order by Rating desc limit 24'
-    # movies = query_db(query)
-
-    # sqlalchemy version
+    form = SearchForm()
     movies = models.MovieList.query.order_by(models.MovieList.Rating.desc()).all()[:24]
     return render_template('top_rated.html',
                            title='Top Rated',
-                           movies=movies)
+                           movies=movies,
+                           form=form)
 
 
 @app.route('/movie/<imdb_id>')
 def movie_page(imdb_id):
+    form = SearchForm()
     query = 'select * from Movie_List where imdb_id = ?'
     movie = query_db(query, (imdb_id,))
     return render_template('movie_page.html',
                            title=movie[0][4],
-                           movie=movie[0])
+                           movie=movie[0],
+                           form=form)
+
+
+@app.route('/search', methods=('GET', 'POST'))
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+    # if request.method == 'POST':
+        # flash('Search request for {}'.format(form.search.data))
+        # query = "select * from Movie_List where title like '%?%'"
+        # result = query_db(query, (form.search.data,))
+        result = models.MovieList.query.filter(models.MovieList.Title.like('%' + form.search.data + '%')).order_by(models.MovieList.Title).all()
+        return render_template('top_rated.html',
+                               title='Search',
+                               movies=result,
+                               form=form)
+    return redirect(url_for('index'))
