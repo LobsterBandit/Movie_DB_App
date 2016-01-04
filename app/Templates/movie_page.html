@@ -53,10 +53,12 @@
                         <span class="glyphicon glyphicon-film"></span>
                         TMDb
                     </a>
+                    {% if movie[17] %}
                     <a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[17] }}" role="button">
                         <span class="glyphicon glyphicon-play-circle"></span>
                         Trailer
                     </a>
+                    {% endif %}
             </div>
     </div>
     <!--<div class="row">-->
