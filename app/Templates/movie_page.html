@@ -27,31 +27,43 @@
 	<div class="bg">
         <!--<img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_backdrop.jpg') }}">-->
 	</div>
-		<div class="row-fluid offsetnav">
-				<div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-					<img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_poster.jpg') }}" class="image-responsive img-rounded myimgclass">
-					<!--<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">-->
-				</div>
-				<div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
-						<h1>{{ movie[4] }}</h1>
-						<div><h4><i> {{ movie[14] }}</i></h4></div><br>
-                        <dl>
-                            <dt>Path</dt>
-                            <dd>{{ movie[3] }}</dd>
-                            <dt>Size</dt>
-                            <dd>{{ movie[2]|filesizeformat() }}</dd>
-                            <dt>Rating</dt>
-                            <dd>{{ movie[9] }}</dd>
-                            <dt>Summary</dt>
-                            <dd>{{ movie[7] }}</dd>
-                        </dl>
-						<a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
-							<span class="glyphicon glyphicon-film"></span>
-							IMDb
-						</a>
-						<a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
-							<span class="glyphicon glyphicon-film"></span>
-							TMDb
-						</a>
-		</div>
+    <div class="row-fluid offsetnav">
+            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                <img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_poster.jpg') }}" class="image-responsive img-rounded myimgclass">
+                <!--<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">-->
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
+                    <h1>{{ movie[4] }}</h1>
+                    <div><h4><i> {{ movie[14] }}</i></h4></div><br>
+                    <dl>
+                        <dt>Path</dt>
+                        <dd>{{ movie[3] }}</dd>
+                        <dt>Size</dt>
+                        <dd>{{ movie[2]|filesizeformat() }}</dd>
+                        <dt>Rating</dt>
+                        <dd>{{ movie[9] }}</dd>
+                        <dt>Summary</dt>
+                        <dd>{{ movie[7] }}</dd>
+                    </dl>
+                    <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+                        <span class="glyphicon glyphicon-film"></span>
+                        IMDb
+                    </a>
+                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+                        <span class="glyphicon glyphicon-film"></span>
+                        TMDb
+                    </a>
+                    <a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[17] }}" role="button">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                        Trailer
+                    </a>
+            </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-xs-4">-->
+            <!--<div class="embed-responsive embed-responsive-16by9">-->
+                <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ movie[17] }}" allowfullscreen></iframe>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 {% endblock %}

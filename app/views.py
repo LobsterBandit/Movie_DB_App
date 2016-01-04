@@ -80,7 +80,13 @@ def top_rated():
 @app.route('/movie/<imdb_id>')
 def movie_page(imdb_id):
     form = SearchForm()
-    query = 'select * from Movie_List where imdb_id = ?'
+    query = """select ml.*, vid.Key
+               from Movie_List ml
+               join Video vid
+               on ml.id = vid.movie_id
+               where ml.imdb_id = ?
+               and vid.Type like '%trailer%'
+               and vid.Site = 'YouTube'"""
     movie = query_db(query, (imdb_id,))
     return render_template('movie_page.html',
                            title=movie[0][4],
