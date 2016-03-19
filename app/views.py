@@ -23,17 +23,6 @@ def index():
                            form=form)
 
 
-@app.route('/list/')
-def list():
-    form = SearchForm()
-    query = 'select * from Movie_List order by Title'
-    movies = query_db(query)
-    return render_template('movie_list.html',
-                           title='Movie List',
-                           movies=movies,
-                           form=form)
-
-
 @app.route('/movies/', defaults={'page': 1})
 @app.route('/movies/<int:page>')
 def paged_list(page):
@@ -80,13 +69,16 @@ def top_rated():
 @app.route('/movie/<imdb_id>')
 def movie_page(imdb_id):
     form = SearchForm()
-    query = """select ml.*, vid.Key
+    # query = """select ml.*, vid.Key
+    #            from Movie_List ml
+    #            join Video vid
+    #            on ml.id = vid.movie_id
+    #            where ml.imdb_id = ?
+    #            and vid.Type like '%trailer%'
+    #            and vid.Site = 'YouTube'"""
+    query = """select ml.*
                from Movie_List ml
-               join Video vid
-               on ml.id = vid.movie_id
-               where ml.imdb_id = ?
-               and vid.Type like '%trailer%'
-               and vid.Site = 'YouTube'"""
+               where ml.imdb_id = ?"""
     movie = query_db(query, (imdb_id,))
     return render_template('movie_page.html',
                            title=movie[0][4],
