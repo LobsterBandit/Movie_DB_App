@@ -37,8 +37,9 @@ def paged_list(page):
 @app.route('/recent/')
 def recent():
     form = SearchForm()
-    query = 'select * from Movie_List order by ID desc limit 24'
-    movies = query_db(query)
+    # query = 'select * from Movie_List order by ID desc limit 24'
+    # movies = query_db(query)
+    movies = models.MovieList.query.order_by(models.MovieList.id.desc()).all()[:24]
     return render_template('recent_adds.html',
                            title='Recent Adds',
                            movies=movies,
