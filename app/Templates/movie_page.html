@@ -3,8 +3,8 @@
 {% block content %}
 	<style>
 	.bg {
-		background: url("https://image.tmdb.org/t/p/original{{ movie[13] }}");
-        <!--background: url('static/images/'~movie[4]~'_'~movie[5]~'_backdrop.jpg');-->
+		background: url("https://image.tmdb.org/t/p/original{{ movie.Backdrop }}");
+        <!--background: url('/images/'~movie.Title~'_'~movie.Year~'_backdrop.jpg');-->
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-attachment: fixed;
@@ -25,49 +25,73 @@
 	}
 	</style>
 	<div class="bg">
-        <!--<img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_backdrop.jpg') }}">-->
+        <!--<img src="{{ url_for('static', filename='/images/'~movie.Title~'_'~movie.Year~'_backdrop.jpg') }}">-->
 	</div>
     <div class="row-fluid offsetnav">
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <img src="{{ url_for('static', filename='/images/'~movie[4]~'_'~movie[5]~'_poster.jpg') }}" class="image-responsive img-rounded myimgclass">
-                <!--<img src="https://image.tmdb.org/t/p/w342/{{ movie[12] }}" class="image-responsive img-rounded myimgclass">-->
+                <img src="{{ url_for('static', filename='/images/'~movie.Title~'_'~movie.Year~'_poster.jpg') }}" class="image-responsive img-rounded myimgclass">
+                <!--<img src="https://image.tmdb.org/t/p/w342/{{ movie.Poster }}" class="image-responsive img-rounded myimgclass">-->
             </div>
             <div class="col-xs-8 col-sm-8 col-md-10 col-lg-5">
-                    <h1>{{ movie[4] }}</h1>
-                    <div><h4><i> {{ movie[14] }}</i></h4></div><br>
+                    <h1>{{ movie.Title }}</h1>
+                    <div><h4><i> {{ movie.Tagline }}</i></h4></div><br>
                     <dl>
                         <dt>Path</dt>
-                        <dd>{{ movie[3] }}</dd>
+                        <dd>{{ movie.Path }}</dd>
                         <dt>Size</dt>
-                        <dd>{{ movie[2]|filesizeformat() }}</dd>
+                        <dd>{{ movie.Size|filesizeformat() }}</dd>
                         <dt>Rating</dt>
-                        <dd>{{ movie[9] }}</dd>
+                        <dd>{{ movie.Rating }}</dd>
                         <dt>Runtime</dt>
-                        <dd>{{ movie[10] }} minutes</dd>
+                        <dd>{{ movie.Runtime }} minutes</dd>
                         <dt>Summary</dt>
-                        <dd>{{ movie[7] }}</dd>
+                        <dd>{{ movie.Overview }}</dd>
                     </dl>
-                    <a class="btn btn-success" target="_blank" href="https://www.imdb.com/title/{{ movie[8] }}" role="button">
+                    <a class="btn btn-warning" target="_blank" href="https://www.imdb.com/title/{{ movie.imdb_id }}" role="button">
                         <span class="glyphicon glyphicon-film"></span>
                         IMDb
                     </a>
-                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie[6] }}">
+                    <a class="btn btn-info" target="_blank" href="https://www.tmdb.org/movie/{{ movie.tmdb_id }}">
                         <span class="glyphicon glyphicon-film"></span>
                         TMDb
                     </a>
-                    {% if movie[17] %}
-                    <a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie[17] }}" role="button">
+                    {% if movie.Key %}
+                    <a class="btn btn-danger" target="_blank" href="https://www.youtube.com/watch?v={{ movie.Key }}" role="button">
                         <span class="glyphicon glyphicon-play-circle"></span>
                         Trailer
                     </a>
                     {% endif %}
+                    {% if play %}
+                    <a class="btn btn-success" role="button" id="play-movie">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        Play Movie
+                    </a>
+                    {% else %}
+                    <button type="button" class="btn btn-danger" disabled="disabled" role="button">
+                        <i class="glyphicon glyphicon-play-circle"></i>
+                        Play Movie
+                    </button>
+                    {% endif %}
             </div>
     </div>
-    <!--<div class="row">-->
-        <!--<div class="col-xs-4">-->
-            <!--<div class="embed-responsive embed-responsive-16by9">-->
-                <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ movie[17] }}" allowfullscreen></iframe>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    {% if movie.Key %}
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ movie.Key }}" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
+
+<!--jQuery to send movie data on "Play Movie" button click to a play view which will call a function to play the movie in VLC-->
+<!--<script>-->
+    <!--$(document).ready(function(){-->
+        <!--$('#play-movie').on('click', function(){-->
+            <!--$.ajax(-->
+
+            <!--);-->
+        <!--};-->
+    <!--});-->
+<!--</script>-->

@@ -1,4 +1,5 @@
 from random import randint
+from os import path
 from flask import Flask, render_template, g, redirect, request, url_for, flash
 from app import app, db, models
 from .database import *
@@ -37,8 +38,6 @@ def paged_list(page):
 @app.route('/recent/')
 def recent():
     form = SearchForm()
-    # query = 'select * from Movie_List order by ID desc limit 24'
-    # movies = query_db(query)
     movies = models.MovieList.query.order_by(models.MovieList.id.desc()).all()[:24]
     return render_template('recent_adds.html',
                            title='Recent Adds',
@@ -77,14 +76,17 @@ def movie_page(imdb_id):
     #            where ml.imdb_id = ?
     #            and vid.Type like '%trailer%'
     #            and vid.Site = 'YouTube'"""
-    query = """select ml.*
-               from Movie_List ml
-               where ml.imdb_id = ?"""
-    movie = query_db(query, (imdb_id,))
+    # query = """select ml.*
+    #            from Movie_List ml
+    #            where ml.imdb_id = ?"""
+    # movie = query_db(query, (imdb_id,))
+    movie = models.MovieList.query.filter(models.MovieList.imdb_id == imdb_id).first()
+    active = path.exists(path.join(movie.Path, movie.Filename))
     return render_template('movie_page.html',
-                           title=movie[0][4],
-                           movie=movie[0],
-                           form=form)
+                           title=movie.Title,
+                           movie=movie,
+                           form=form,
+                           play=active)
 
 
 @app.route('/search', methods=('GET', 'POST'))
@@ -97,3 +99,9 @@ def search():
                                movies=result,
                                form=form)
     return redirect(url_for('index'))
+
+
+# @app.route('/play/<movie>', methods='POST')
+# def play_movie(movie):
+#     if movie:
+
