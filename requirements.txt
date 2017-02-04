@@ -1,0 +1,5 @@
+SQLAlchemy==1.0.10
+Flask==0.12
+flask_sqlalchemy==2.1
+flask_wtf==0.14.2
+WTForms==2.1
