@@ -5,6 +5,9 @@
         <h1 class="offsetnav" align="center">No results found for <i>{{ form.search.data }}</i></h1>
     {% endif %}
     <div class="row-fluid offsetnav">
+        {% if movies|count != 0 %}
+            <h3 align="center">{{ movies|count }} results</h3>
+        {% endif %}
         {% for movie in movies %}
             <div class="col-md-6 col-lg-4 hidden-xs hidden-sm">
                 <h2 class="titlebg" id="toptitle" align="center"><a href="/movie/{{ movie.imdb_id }}">{{ movie.Title }}</a></h2>
@@ -16,6 +19,14 @@
                         </a>
                     </div>
                     <div class="col-md-8 col-lg-8 hidden-xs hidden-sm">
+                        <div>
+                            {% if movie.Genre %}
+                                {% for genre in movie.Genre.split(',') %}
+                                    <button type="button" class="btn btn-warning btn-xs">{{ genre }}</button>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div><strong>Size</strong> {{ movie.Size|filesizeformat() }}</div>
                         <div><strong>Rating</strong> {{ movie.Rating }}</div>
                         <dl>
                             <dt>Summary</dt>
@@ -52,6 +63,13 @@
                 </a>
             </div>
             <div class="col-xs-9 col-sm-10 hidden-md hidden-lg">
+                <div>
+                    {% if movie.Genre %}
+                        {% for genre in movie.Genre.split(',') %}
+                            <button type="button" class="btn btn-warning btn-xs">{{ genre }}</button>
+                        {% endfor %}
+                    {% endif %}
+                </div>
                 <div><u>Size</u>: {{ movie.Size|filesizeformat() }}</div>
                 <div><u>Rating</u>: {{ movie.Rating }}</div>
                 <div><u>Summary</u>: {{ movie.Overview[:150] }}<a href="/movie/{{ movie.imdb_id }}" >...read more</a></div><br>

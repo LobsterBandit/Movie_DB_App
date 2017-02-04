@@ -4,7 +4,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+		<!--<link href="/css/bootstrap-theme.min.css" rel="stylesheet">-->
 		<link href="/css/styles.css" rel="stylesheet">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
 		{% if title %}
@@ -33,10 +33,12 @@
 				<div class="collapse navbar-collapse" id="home">
 					<ul class="nav navbar-nav">
 						<!--<li><a href={{ url_for('index') }}>Home</a></li>-->
-						<li><a href={{ url_for('paged_list') }}><strong>Movie List</strong></a></li>
+                        <li><a href={{ url_for('genre_list') }}><strong>Genres</strong></a></li>
 						<li><a href={{ url_for('recent') }}><strong>Recent Adds</strong></a></li>
 						<li><a href={{ url_for('movie_3d') }}><strong>3D</strong></a></li>
 						<li><a href={{ url_for('top_rated') }}><strong>Top Rated</strong></a></li>
+						<li><a href={{ url_for('random_list') }}><strong>Random Movies</strong></a></li>
+                        <li><a href={{ url_for('paged_list') }}><strong>Movie List</strong></a></li>
 						<li><form class="navbar-form" role="search" action="/search" method=post>
                             {{ form.hidden_tag() }}
 								<input type="search" class="form-control" name="search" placeholder="Search Movie Titles">

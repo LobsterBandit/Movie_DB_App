@@ -5,6 +5,7 @@ from app import app, db, models
 from .database import *
 from .forms import SearchForm
 from config import PER_PAGE
+from sqlalchemy.sql import func
 
 
 @app.route('/')
@@ -100,6 +101,35 @@ def search():
                                form=form)
     return redirect(url_for('index'))
 
+
+@app.route('/genre/<genre>')
+def genre(genre):
+    form = SearchForm()
+    movie_list = models.MovieList.query.filter(models.MovieList.Genre.like('%'+genre+'%')).all()
+    return render_template('top_rated.html',
+                           title=genre,
+                           movies=movie_list,
+                           form=form)
+
+
+@app.route('/genre')
+def genre_list():
+    form = SearchForm()
+    genre_list = models.GenreList.query.distinct()
+    return render_template('genres.html',
+                           title='Genres',
+                           genres=genre_list,
+                           form=form)
+
+
+@app.route('/random')
+def random_list():
+    form = SearchForm()
+    movies = models.MovieList.query.order_by(func.random()).all()[:12]
+    return render_template('top_rated.html',
+                           title='Random Sampling',
+                           movies=movies,
+                           form=form)
 
 # @app.route('/play/<movie>', methods='POST')
 # def play_movie(movie):

@@ -27,6 +27,16 @@ class Genre(db.Model):
     Date_Added = db.Column(db.DateTime, default=dt.datetime.utcnow())
 
 
+class GenreList(db.Model):
+    __tablename__ = 'GenreList'
+
+    GenreId = db.Column(db.Integer, primary_key=True)
+    GenreName = db.Column(db.Text, nullable=False)
+    Source = db.Column(db.Text, nullable=False)
+    DateUpdated = db.Column(db.DateTime, default=dt.datetime.utcnow())
+    DateAdded = db.Column(db.DateTime, default=dt.datetime.utcnow())
+
+
 class MovieList(db.Model):
     __tablename__ = 'Movie_List'
 
@@ -47,6 +57,7 @@ class MovieList(db.Model):
     Tagline = db.Column(db.Text)
     Date_Updated = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow())
     Date_Added = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow())
+    Genre = db.Column(db.Text)
 
 
 class Video(db.Model):

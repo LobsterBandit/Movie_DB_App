@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row-fluid offsetnav">
+        <h2 class="text-center">Select a Genre</h2>
+            <div class="row">
+                <div class="col-md-8 col-md-push-2 hidden-xs hidden-sm">
+                    {% for genre in genres %}
+                        {% if genre.GenreName %}
+                            <a class="btn btn-primary btn-lg" href="/genre/{{ genre.GenreName }}" role="button">
+                                {{ genre.GenreName }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-xs-8 col-xs-push-2 hidden-md hidden-lg">
+                    {% for genre in genres %}
+                        {% if genre.GenreName %}
+                            <a class="btn btn-primary btn-md" href="/genre/{{ genre.GenreName }}" role="button">
+                                {{ genre.GenreName }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+{% endblock %}
